@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Coaching | Simple One-Page Site</title>
+  <meta name="description" content="A clean, fast one-page site you can customize for tutoring, coaching, or a personal profile." />
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #131a26;
+      --text: #e7edf5;
+      --muted: #9fb0c9;
+      --accent: #5cc8ff;
+      --accent2: #7cf29b;
+      --ring: rgba(92,200,255,0.35);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.6;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(124,242,155,0.08), transparent 60%),
+                  radial-gradient(800px 400px at 90% 10%, rgba(92,200,255,0.09), transparent 60%),
+                  var(--bg);
+    }
+    a { color: var(--accent); text-decoration: none; }
+    .container { max-width: 1060px; margin: 0 auto; padding: 20px; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,15,23,0.85), rgba(11,15,23,0.35));
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .4px; }
+    .logo {
+      width: 36px; height: 36px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 6px 20px rgba(92,200,255,.4), inset 0 0 18px rgba(255,255,255,.25);
+    }
+    .nav a { padding: 8px 12px; border-radius: 10px; font-weight: 600; color: var(--muted); }
+    .nav a:hover { color: var(--text); background: rgba(255,255,255,0.06); }
+    .hero {
+      padding: 64px 0 24px;
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 28px; align-items: center;
+    }
+    @media (max-width: 900px) { .hero { grid-template-columns: 1fr; padding-top: 36px; } }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), transparent 50%), var(--card);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 22px;
+      box-shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 10px; border-radius: 999px; font-size: 13px; color: var(--muted);
+      background: rgba(124,242,155,0.08); border: 1px solid rgba(124,242,155,0.25);
+    }
+    h1 {
+      font-size: clamp(28px, 5vw, 44px); line-height: 1.15; margin: 12px 0 10px;
+      letter-spacing: .2px;
+    }
+    .lead { color: var(--muted); font-size: 16px; margin-bottom: 16px; }
+    .cta {
+      display: inline-flex; gap: 12px; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 16px; border-radius: 12px; font-weight: 700; border: 1px solid transparent;
+      transition: transform .05s ease-in-out;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #4ea7ff);
+      color: #03121e; border-color: rgba(255,255,255,0.12);
+      box-shadow: 0 12px 30px rgba(92,200,255,.35);
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.05);
+      color: var(--text); border-color: rgba(255,255,255,0.12);
+    }
+    .stats {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 14px;
+    }
+    @media (max-width: 700px) { .stats { grid-template-columns: 1fr; } }
+    .stat { text-align: center; padding: 14px; border-radius: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+    .stat .num { font-size: 24px; font-weight: 800; }
+    .grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 22px;
+    }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .feature h3 { margin: 6px 0 6px; }
+    .muted { color: var(--muted); }
+    .section { margin: 44px 0; }
+    .tag { font-size: 12px; padding: 4px 8px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.04); color: var(--muted); }
+    form input, form textarea {
+      width: 100%; padding: 12px 14px; margin: 6px 0 12px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.12);
+      color: var(--text); border-radius: 12px; outline: none;
+    }
+    form input:focus, form textarea:focus { box-shadow: 0 0 0 6px var(--ring); border-color: var(--accent); }
+    footer { margin: 40px 0 20px; color: var(--muted); text-align: center; }
+    .stroke {
+      position: relative;
+    }
+    .stroke::after {
+      content: ""; position: absolute; left: 0; bottom: 4px; height: 10px; width: 100%;
+      background: linear-gradient(90deg, rgba(92,200,255,.5), rgba(124,242,155,.45));
+      filter: blur(12px); opacity: .55; z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand"><span class="logo"></span><span>My Coaching</span></div>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <span class="pill">Fast • Responsive • No setup</span>
+        <h1>Launch your <span class="stroke">coaching</span> site in minutes.</h1>
+        <p class="lead">Perfect for tutors, exam prep (SBI Clerk/PO), and English coaching. Edit the text, drop the file on Netlify, and you’re live.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#contact">Book a Free Demo</a>
+          <a class="btn btn-ghost" href="#features">See Features</a>
+        </div>
+        <div class="stats">
+          <div class="stat"><div class="num">500+</div><div class="muted">Students Guided</div></div>
+          <div class="stat"><div class="num">92%</div><div class="muted">Success Rate</div></div>
+          <div class="stat"><div class="num">4.8★</div><div class="muted">Average Rating</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <span class="tag">What you get</span>
+        <ul>
+          <li>✅ Clean one-page layout with hero, features, about, and contact.</li>
+          <li>✅ Fully responsive, works on mobile.</li>
+          <li>✅ No frameworks or installs. Single HTML file.</li>
+          <li>✅ Easy to convert into an Android app (WebView).</li>
+        </ul>
+        <div class="grid section" id="features">
+          <div class="feature card">
+            <h3>Mock Tests</h3>
+            <p class="muted">Daily quizzes and speed drills designed for SBI Clerk time management.</p>
+          </div>
+          <div class="feature card">
+            <h3>Grammar Sessions</h3>
+            <p class="muted">Targeted lessons and notes for error spotting and sentence improvement.</p>
+          </div>
+          <div class="feature card">
+            <h3>Doubt Clearing</h3>
+            <p class="muted">Live chat support and weekend group sessions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="card">
+        <span class="tag">About</span>
+        <h2>Hi, I'm Your Coach</h2>
+        <p class="muted">I help students crack banking exams with practical strategies, high-yield notes, and a calm exam-day mindset.</p>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="card">
+        <span class="tag">Contact</span>
+        <h2>Book a Free Demo</h2>
+        <form name="contact" onsubmit="return submitForm(event)">
+          <input type="text" name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Your email" required />
+          <textarea name="message" placeholder="Your message" rows="4" required></textarea>
+          <button class="btn btn-primary" type="submit">Send</button>
+          <p class="muted" id="msg"></p>
+        </form>
+        <p class="muted">Or email: <a href="mailto:you@example.com">you@example.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">© <span id="year"></span> My Coaching • Built with ♥</div>
+  </footer>
+
+  <script>
+    const y = new Date().getFullYear();
+    document.getElementById('year').textContent = y;
+
+    function submitForm(e){
+      e.preventDefault();
+      const msg = document.getElementById('msg');
+      msg.textContent = "Thanks! I'll get back to you within 24 hours.";
+      return false;
+    }
+  </script>
+</body>
+</html>
